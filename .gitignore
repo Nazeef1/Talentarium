@@ -1,0 +1,9 @@
+# Ignore node modules
+staticpages/
+
+# Ignore log files
+package-lock.json
+package.json
+
+# Ignore environment files
+.env
