@@ -1,0 +1,78 @@
+.about-page{
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .hero-section-landingPage {
+    
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(135deg, #6b73ff, #000dff);
+    color: white;
+  }
+  
+  .hero-section-landingPage h1 {
+    padding-top: 120px;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .hero-section-landingPage p {
+    font-size: 1.2rem;
+  }
+  
+  .mission-section-landingPage {
+    padding: 40px;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: black;
+  }
+  
+  .mission-section-landingPage h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .mission-section-landingPage p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .team-section-landingPage {
+    padding: 40px;
+    text-align: center;
+    color: black;
+  }
+  
+  .team-section-landingPage h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .team-grid-landingPage {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .team-member-landingPage {
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .team-member-landingPage img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .footer-landingPage {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+  }
+  
