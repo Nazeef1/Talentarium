@@ -1,0 +1,7 @@
+# Ignore node modules
+staticpages/
+
+# Ignore log files
+
+# Ignore environment files
+.env
