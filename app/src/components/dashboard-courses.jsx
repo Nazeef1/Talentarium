@@ -1,7 +1,9 @@
 import React from "react";
 import './dashboard-courses.css';
+import { Link } from 'react-router-dom';
 
 const DashboardCourses = () => {
+    
     return (
         <>
             <div className="course-section">
@@ -14,7 +16,7 @@ const DashboardCourses = () => {
                                 <div className="progress" style={{ width: '70%' }}></div>
                             </div>
                         </div>
-                        <a href="#">Continue</a>
+                        <Link to="/course/1" className="continue-button">Continue</Link>
                     </li>
                     <li className="course-item">
                         <h3>Web Development Basics</h3>
@@ -23,7 +25,7 @@ const DashboardCourses = () => {
                                 <div className="progress" style={{ width: '50%' }}></div>
                             </div>
                         </div>
-                        <a href="#">Continue</a>
+                        <Link to="/course/2" className="continue-button">Continue</Link>
                     </li>
                     <li className="course-item">
                         <h3>Data Science Essentials</h3>
@@ -32,7 +34,6 @@ const DashboardCourses = () => {
                                 <div className="progress" style={{ width: '30%' }}></div>
                             </div>
                         </div>
-                        <a href="#">Continue</a>
                     </li>
                 </ul>
             </div>

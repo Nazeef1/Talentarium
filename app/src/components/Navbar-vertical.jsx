@@ -5,8 +5,8 @@ const NavBarVertical = () => {
     return(
         <div class="courses-navbar">
             <ul>
-                <li><a class="courses" href="/courses">Courses</a></li>
-                <li><a class="dashboard" href="/dashboard">Dashboard</a></li>
+                <li><a class="Dashboard" href="/courses">Courses</a></li>
+                <li><a class="Courses" href="/dashboard">Dashboard</a></li>
             </ul>
         </div>
     );
