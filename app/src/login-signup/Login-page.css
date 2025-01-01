@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .login-page-wrapper {
   min-height: 100vh;
   display: flex;
@@ -15,6 +16,9 @@
 }
 
 .container-login {
+=======
+.container {
+>>>>>>> df6ecff983eef33f76a7fb3192c37c54995f1582
   display: flex;
   width: 80%;
   max-width: 800px;
