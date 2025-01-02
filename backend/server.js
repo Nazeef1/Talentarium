@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Import CORS middleware
 const userRoutes = require('./userRoutes'); // Path to your routes file
 
 const app = express();
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Middleware to parse JSON
 
 // Connect to MongoDB

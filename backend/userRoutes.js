@@ -1,24 +1,55 @@
 const express = require('express');
-const User = require('./user'); // Adjust the path as necessary
+const User = require('./user');
 const router = express.Router();
 
-// Create a new user
 router.post('/users', async (req, res) => {
   try {
-    // Check if user already exists
     const { email, password } = req.body;
+
+    // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
-    // Create and save new user
-    const newUser = new User({ email, password, coursesregs: [], coursescomp: [] });
+
+    // Save user with plain-text password (not recommended)
+    const newUser = new User({
+      email,
+      password, // Password stored as plain text (NOT SECURE)
+      coursesregs: [],
+      coursescomp: []
+    });
+
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+
+// Add this endpoint to authenticate the user
+router.post('/users/authenticate', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      // Find the user by email
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(401).json({ message: 'Invalid email or password' });
+      }
+  
+      // Compare the provided password with the stored hashed password
+      const isMatch = await user.comparePassword(password);
+      if (!isMatch) {
+        return res.status(401).json({ message: 'Invalid email or password' });
+      }
+  
+      // Respond with success
+      res.status(200).json({ message: 'Authentication successful', token: 'dummy-jwt-token' }); // Replace with a real JWT token if needed
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  });
 
 // Delete a user
 router.delete('/users/:email', async (req, res) => {
