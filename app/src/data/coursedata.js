@@ -14,8 +14,6 @@ const Links = [
         duration: '2 hours',
         author: 'The Coding Train',
         description: 'Learn JavaScript, p5.js, and more!'
-<<<<<<< HEAD
-=======
     },
     {
         courseid: '3',
@@ -272,7 +270,6 @@ const Links = [
         duration: '3 hours',
         author: 'The Honest Guys',
         description: 'Relax and focus your mind'
->>>>>>> e29bb4e472a6f8defc60fd6ea175142dc4babd8f
     }
 ];
 
