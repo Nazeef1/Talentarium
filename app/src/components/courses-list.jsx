@@ -6,8 +6,8 @@ const CoursesList = ({ courses }) => {
     <div>
       <ul className="course-list-courses">
         {courses.map((course) => (
-          <li key={course.id} className="course-item-courses">
-            <h3>{course.name}</h3>
+          <li key={course.courseid} className="course-item-courses">
+            <h3>{course.coursename}</h3>
             <button>Enroll</button>
           </li>
         ))}
@@ -15,5 +15,6 @@ const CoursesList = ({ courses }) => {
     </div>
   );
 };
+
 
 export default CoursesList;

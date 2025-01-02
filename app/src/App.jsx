@@ -8,7 +8,7 @@ import Course from './course-page';
 import Signup from './Signup';
 import Login from './Login';
 
-import {HashRouter, Routes, Route, BrowserRouter} from 'react-router-dom';
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
 
 function App() {
 
