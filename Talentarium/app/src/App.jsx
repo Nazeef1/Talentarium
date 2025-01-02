@@ -24,8 +24,6 @@ function App() {
           <Route path="/coursesLP" element={<CoursesLP />} />
           <Route path="/category/:categoryName" element={<CoursesLP />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses" element={<Courses />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />

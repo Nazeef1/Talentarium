@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function Carousel() {
+  const handleSignUpClick = () => {
+    navigate("/signup"); // Navigate to the Signup page
+  };
   const slides = [
     {
       backgroundImage:
@@ -44,7 +49,7 @@ function Carousel() {
             <div className="content-box-landingPage">
               <h2>{slide.title}</h2>
               <p>{slide.description}</p>
-              <button className="get-started-landingPage">
+              <button className="get-started-landingPage" onClick={handleSignUpClick}>
                 <span>▶</span> {slide.buttonLabel}
               </button>
             </div>

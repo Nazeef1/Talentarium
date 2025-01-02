@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   
-  const handleEnrollNowClick = () => {
+  const handleSignUpClick = () => {
     navigate("/signup"); // Navigate to the Signup page
+  };
+  const handleLoginClick = () => {
+    navigate("/login"); // Navigate to the Signup page
   };
   return (
     <header className="header-landingPage">
@@ -27,10 +30,10 @@ function Navbar() {
             </li>
           </ul>
           <div className="auth-buttons-landingPage">
-            <a href="#" className="login-btn-landingPage" onClick={handleEnrollNowClick}>
+            <a href="#" className="login-btn-landingPage" onClick={handleLoginClick}>
               Login
             </a>
-            <a href="#" className="signup-btn-landingPage" onClick={handleEnrollNowClick}>
+            <a href="#" className="signup-btn-landingPage" onClick={handleSignUpClick}>
               Signup
             </a>
           </div>
