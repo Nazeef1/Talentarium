@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Add focus states for inputs */
 input:focus {
   outline: none;
@@ -15,4 +16,23 @@ input:focus {
 .btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+=======
+/* Add focus states for inputs */
+input:focus {
+  outline: none;
+  border-color: #0051ff;
+  box-shadow: 0 0 0 2px rgba(0, 81, 255, 0.1);
+}
+
+/* Improve button transition */
+.btn {
+  /* existing styles */
+  transition: all 0.3s ease;
+}
+
+/* Add loading state styles for button */
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+>>>>>>> e29bb4e472a6f8defc60fd6ea175142dc4babd8f
 } 
