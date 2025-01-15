@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import CategoryCard from "./CategoryCard";
 
 const CategoryContainer = () => {
-  const navigate = useNavigate();
-
   const categories = [
     {
       image: "/images/web-programming.png",

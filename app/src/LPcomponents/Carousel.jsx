@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Carousel() {
+  const navigate = useNavigate();
   const handleSignUpClick = () => {
     navigate("/signup"); // Navigate to the Signup page
   };
