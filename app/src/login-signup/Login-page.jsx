@@ -22,19 +22,21 @@ const Loginpagecomponent = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok) {
         setError(data.message);
       } else {
         localStorage.setItem('token', data.token); // Save token locally
+        localStorage.setItem('userEmail', formData.email); // Save email locally
         navigate('/dashboard'); // Redirect to dashboard
       }
     } catch (error) {
       setError('Server error. Please try again later.');
     }
   };
+    
 
   return (
     <div className="login-page-wrapper">

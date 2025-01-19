@@ -6,8 +6,10 @@ const NavBarhorizontal = () => {
     const navigate = useNavigate();
       
     const handleLogoutClick = () => {
-    navigate("/"); // Navigate to the Signup page
-    };
+        localStorage.removeItem('token');
+        localStorage.removeItem('userEmail');
+        navigate('/');
+      };
 
     return (
         <nav className="navbar-horizontal">

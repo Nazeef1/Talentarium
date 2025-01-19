@@ -1,20 +1,20 @@
 import React from 'react';
 import './dashboard-stat.css';
 
-const StatusBar = () => {
+const StatusBar = ({ completedCount, ongoingCount }) => {
     return(
-        <div class="stat-dashboard">
-            <div class="stats">
-                <div class="stat-card">
+        <div className="stat-dashboard">
+            <div className="stats">
+                <div className="stat-card">
                     <h2>Courses Completed</h2>
-                    <p>5</p>
+                    <p>{completedCount}</p>
                 </div>
-                <div class="stat-card">
+                <div className="stat-card">
                     <h2>Ongoing Courses</h2>
-                    <p>3</p>
+                    <p>{ongoingCount}</p>
                 </div>
             </div>
-      </div>
+        </div>
     );
 }
 
