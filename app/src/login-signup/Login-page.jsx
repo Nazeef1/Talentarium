@@ -16,24 +16,43 @@ const Loginpagecomponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    console.log('Attempting login with:', formData); // Log the form data
+    
     try {
+      console.log('Sending request to server...');
       const response = await fetch('http://localhost:8000/api/users/authenticate', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(formData),
+        credentials: 'include'
       });
   
+      console.log('Response received:', response.status); // Log the response status
       const data = await response.json();
-  
+      console.log('Response data:', data); // Log the response data
+      
       if (!response.ok) {
+        console.log('Login failed:', data.message);
         setError(data.message);
-      } else {
-        localStorage.setItem('token', data.token); // Save token locally
-        localStorage.setItem('userEmail', formData.email); // Save email locally
-        navigate('/dashboard'); // Redirect to dashboard
+        alert(data.message);
+        return;
       }
+      
+      // Success case
+      console.log('Login successful, navigating to dashboard...');
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userEmail', formData.email);
+      navigate('/dashboard');
+      
     } catch (error) {
-      setError('Server error. Please try again later.');
+      console.error('Login error:', error);
+      const errorMessage = 'Invalid login. Please try again later.';
+      setError(errorMessage);
+      alert(errorMessage);
     }
   };
     
@@ -52,6 +71,7 @@ const Loginpagecomponent = () => {
           <div className="logo-login">TALENTARIUM</div>
           <h2>Welcome Back!</h2>
           <h3>Sign In</h3>
+          {error && <div className="error-message">{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className="input-group-login">
               <label htmlFor="email">E-mail</label>
