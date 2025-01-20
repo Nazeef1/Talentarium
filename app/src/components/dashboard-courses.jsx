@@ -18,11 +18,11 @@ const DashboardCourses = () => {
       navigate('/login'); // Redirect to login if email is not found
       return;
     }
-  
+
     const fetchWithHandling = async (url) => {
       const response = await fetch(url);
       const contentType = response.headers.get('content-type');
-  
+
       if (!response.ok) {
         if (contentType && contentType.includes('application/json')) {
           const errorData = await response.json();
@@ -31,31 +31,31 @@ const DashboardCourses = () => {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
       }
-  
+
       if (contentType && contentType.includes('application/json')) {
         return response.json();
       } else {
         throw new Error('Invalid JSON response from server');
       }
     };
-  
+
     const fetchCourses = async () => {
       try {
         // Fetch registered courses
         const regData = await fetchWithHandling(`http://localhost:8000/api/users/${userEmail}/coursesregs`);
         setRegisteredCourses(regData.coursesregs);
-  
+
         // Fetch completed courses
         const compData = await fetchWithHandling(`http://localhost:8000/api/users/${userEmail}/coursescomp`);
         setCompletedCourses(compData.coursescomp);
-  
+
         // Set all available courses
         setAllCourses(Links);  // Set allCourses to the Links JSON data
       } catch (error) {
         console.error('Error fetching courses:', error.message);
       }
     };
-  
+
     fetchCourses();
   }, [userEmail, navigate]);
 
@@ -64,16 +64,21 @@ const DashboardCourses = () => {
     return allCourses.find(course => String(course.courseid) === String(courseId)) || {};
   };
 
+  // Filter registeredCourses to exclude completedCourses
+  const ongoingCourses = registeredCourses.filter(
+    courseId => !completedCourses.includes(courseId)
+  );
+
   return (
     <>
       <StatusBar 
         completedCount={completedCourses.length} 
-        ongoingCount={registeredCourses.length} 
+        ongoingCount={ongoingCourses.length} 
       />
       <div className="course-section">
         <h2>Ongoing Courses</h2>
         <ul className="course-list">
-          {registeredCourses.map(courseId => {
+          {ongoingCourses.map(courseId => {
             const { coursename, ytlink } = getCourseDetails(courseId);
             return (
               <li key={courseId} className="course-item">
@@ -106,4 +111,3 @@ const DashboardCourses = () => {
 };
 
 export default DashboardCourses;
-

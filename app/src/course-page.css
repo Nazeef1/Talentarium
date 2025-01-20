@@ -52,3 +52,26 @@ body {
     color: #333;
     }
     
+    .course-action {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .mark-completed-button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .mark-completed-button:hover {
+      background-color: #2980b9;
+    }
+    
+    .mark-completed-button:active {
+      background-color: #1c5f8a;
+    }

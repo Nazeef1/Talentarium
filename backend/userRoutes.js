@@ -6,6 +6,11 @@ router.post('/users', async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -23,6 +28,7 @@ router.post('/users', async (req, res) => {
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.error('Error creating user:', error.message);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
@@ -35,7 +41,7 @@ router.post('/users/authenticate', async (req, res) => {
       // Find the user by email
       const user = await User.findOne({ email });
       if (!user) {
-        return res.status(401).json({ message: 'Invalid email or password' });
+        return res.status(401).json({ message: 'Invalid email' });
       }
   
       // Compare the provided password with the stored hashed password
@@ -130,6 +136,41 @@ router.patch('/users/:email/coursescomp', async (req, res) => {
       res.status(200).json({ message: 'Course added to completed courses' });
     } catch (error) {
       res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  });
+
+  // Move a course from registered courses to completed courses
+  router.patch('/users/:email/move-course', async (req, res) => {
+    const { email } = req.params;
+    const { courseId } = req.body;
+  
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Remove the course from `coursesregs`
+      const isRegistered = user.coursesregs.includes(courseId);
+      if (!isRegistered) {
+        return res.status(400).json({ message: 'Course not found in registered courses' });
+      }
+      user.coursesregs = user.coursesregs.filter(id => id !== courseId);
+  
+      // Add the course to `coursescomp`
+      if (!user.coursescomp.includes(courseId)) {
+        user.coursescomp.push(courseId);
+      }
+  
+      // Save user and return updated data
+      await user.save();
+      return res.status(200).json({
+        message: 'Course moved to completed courses',
+        coursesregs: user.coursesregs,
+        coursescomp: user.coursescomp,
+      });
+    } catch (error) {
+      return res.status(500).json({ message: 'Server error', error: error.message });
     }
   });
   
